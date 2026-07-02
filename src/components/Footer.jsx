@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 border-t border-zinc-800/60 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-600 text-sm">© 2025 Red Deer Tech & Code. All rights reserved.</p>
+          <p className="text-zinc-600 text-sm">© 2026 Red Deer Tech & Code. All rights reserved.</p>
           <p className="text-zinc-700 text-sm">Central Alberta's Tech Community</p>
         </div>
       </div>

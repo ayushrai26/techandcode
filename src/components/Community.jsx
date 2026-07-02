@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
+import GlobeIntro from "./GlobeIntro";
 
 export default function CommunityIntro() {
   const ref = useRef(null);
 
   useEffect(() => {
     const els = ref.current?.querySelectorAll(".reveal");
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -13,7 +15,9 @@ export default function CommunityIntro() {
       },
       { threshold: 0.15 }
     );
+
     els?.forEach((el) => obs.observe(el));
+
     return () => obs.disconnect();
   }, []);
 
@@ -25,117 +29,92 @@ export default function CommunityIntro() {
   ];
 
   return (
-    <section ref={ref} className="relative bg-[#09090B] text-white py-20 sm:py-24 lg:py-32 overflow-hidden">
+    <section
+      ref={ref}
+      className="relative overflow-hidden bg-[#09090B] text-white py-16 lg:py-32"
+    >
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-cyan-500/5 blur-[170px] pointer-events-none" />
 
-      {/* Subtle BG Glow */}
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] rounded-full bg-cyan-500/4 blur-[100px] sm:blur-[130px] lg:blur-[150px] pointer-events-none" />
+      <div className="relative z-10 max-w-[1300px] mx-auto px-4 sm:px-6">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6">
+        <GlobeIntro />
 
-        {/* Label */}
-        <span className="section-label reveal">About The Community</span>
+        {/* Main Layout */}
+        <div className="mt-12 lg:mt-20 flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-28">
 
-        {/* Big name */}
-        <h2
-          className="reveal reveal-delay-1 mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-semibold leading-[0.95] tracking-tight"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-        >
-          Hi,
-          <br />
-          <span className="gradient-text">I'm Jeff.</span>
-        </h2>
+          {/* Left Image */}
+          <div className="reveal reveal-delay-2 shrink-0 w-full lg:w-auto">
+            <div className="overflow-hidden bg-zinc-900 rounded-sm">
+              <img
+                src="/founder.png"
+                alt="Jeff"
+                className="w-full lg:w-[520px] h-[340px] sm:h-[420px] lg:h-[640px] object-cover object-top grayscale transition duration-700 hover:scale-105"
+              />
+            </div>
+          </div>
 
-        <p className="reveal reveal-delay-2 mt-6 sm:mt-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl text-zinc-400 max-w-3xl font-light leading-snug">
-          Formerly of Sask, AB, BC —<br />and now in Red Deer.
-        </p>
+          {/* Right Content */}
+          <div className="reveal reveal-delay-3 w-full lg:max-w-[410px]">
+
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl leading-[0.95] tracking-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Hi,
+              <br />
+              I'm Jeff.
+            </h2>
+
+            <p className="mt-7 lg:mt-10 text-[15px] sm:text-[17px] leading-7 sm:leading-8 text-zinc-300">
+              Having been involved in businesses, startups and the tech community in
+              several regions, I know there is great value in creating a strong local
+              community where people can share ideas, learn from each other and build
+              meaningful relationships.
+            </p>
+
+            <p className="mt-5 lg:mt-7 text-[15px] sm:text-[17px] leading-7 sm:leading-8 text-zinc-500">
+              Technology has made it easier than ever to build companies from
+              anywhere. My goal is to create a place where founders, developers,
+              designers and curious builders can connect, collaborate and grow
+              together—right here in Central Alberta.
+            </p>
+
+            <div className="mt-8 lg:mt-10">
+              <button className="w-full sm:w-auto border border-white/15 px-6 py-3.5 text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500">
+                Join Community
+              </button>
+            </div>
+
+          </div>
+
+        </div>
 
         {/* Divider */}
-        <div className="reveal reveal-delay-3 my-10 sm:my-12 lg:my-14 h-px bg-white/10 max-w-5xl"/>
-
-        {/* Main bio */}
-       {/* Main Content */}
-<div className="mt-10 grid lg:grid-cols-[1fr_360px] gap-12 items-start">
-
-  {/* Story */}
-  <div className="reveal reveal-delay-3">
-
-    <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-zinc-400 max-w-4xl">
-      Having been involved in businesses, startups and the tech community in
-      several regions — I know there is{" "}
-      <span className="text-white font-medium">
-        great value in creating a strong local community,
-      </span>{" "}
-      sharing what we know and meeting to talk tech, programming,
-      startups and product.
-    </p>
-
-    <p className="mt-8 text-lg text-zinc-500 leading-8 max-w-3xl">
-      Technology has made it easier than ever to build companies from
-      anywhere. My goal is to create a place where founders, developers,
-      designers and curious builders can connect, learn and grow together—
-      right here in Central Alberta.
-    </p>
-
-  </div>
-
-  {/* Founder Card */}
-  <div className="reveal reveal-delay-4">
-
-    <div className="glass-card overflow-hidden rounded-3xl">
-
-      {/* Image */}
-      <div className="relative">
-
-        <img
-          src="/founder.png"
-          alt="Jeff"
-          className="w-full h-[380px] object-cover transition duration-700 hover:scale-105"
-        />
-
-        <div className="absolute inset-0 bg-linear-to-t from-[#09090B] via-transparent to-transparent" />
-
-      </div>
-
-      {/* Card Content */}
-      <div className="p-6">
-
-        <div className="text-xs uppercase tracking-[0.25em] text-cyan-400">
-          Founder
-        </div>
-
-        <h3 className="mt-2 text-2xl font-semibold">
-          Jeff
-        </h3>
-
-        <p className="mt-1 text-zinc-500">
-          Red Deer Tech & Startups
-        </p>
-
-        <div className="h-px bg-white/10 my-5" />
-
-        <p className="text-sm leading-7 text-zinc-400 italic">
-          “Great companies don't have to start in big cities.
-          They start wherever passionate people decide to build.”
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+        <div className="reveal reveal-delay-4 mt-16 lg:mt-24 h-px bg-white/10" />
 
         {/* Stats */}
-        <div className="reveal reveal-delay-4 mt-16 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          {stats.map((s) => (
-            <div key={s.label} className="glass-card p-5 sm:p-6 text-center">
-              <div className="stat-number gradient-text">{s.number}</div>
-              <div className="stat-label mt-1 sm:mt-2">{s.label}</div>
+        <div className="reveal reveal-delay-4 mt-10 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+
+          {stats.map((item) => (
+            <div
+              key={item.label}
+              className="border border-white/10 p-5 sm:p-8 text-center backdrop-blur-sm"
+            >
+              <div
+                className="text-3xl sm:text-4xl md:text-5xl font-semibold"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                {item.number}
+              </div>
+
+              <div className="mt-2 sm:mt-3 text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em] text-zinc-500">
+                {item.label}
+              </div>
             </div>
           ))}
-        </div>
 
+        </div>
       </div>
     </section>
   );
